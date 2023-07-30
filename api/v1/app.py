@@ -35,7 +35,7 @@ def storage_close(self):
 def err_404():
     """A function to return error 404"""
     err = {'error': 'Not found'}
-    return jsonify(err)
+    return jsonify(err), 404
 
 
 if __name__ == "__main__":
