@@ -33,8 +33,5 @@ def count():
             }   
     my_dict = {}
     for key, value in objects.items():
-        new_dict = {
-                key: storage.count(value)
-                }
-        my_dict.update(new_dict)
+        new_dict[key] = storage.count(value)
     return jsonify(my_dict)
