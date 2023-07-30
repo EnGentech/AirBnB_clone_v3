@@ -20,6 +20,7 @@ def status():
             }
     return jsonify(status)
 
+
 @app_views.route('/stats')
 def list_counnt():
     """Return the number of each objects in database"""
@@ -30,7 +31,7 @@ def list_counnt():
             'reviews': Review,
             'states': State,
             'users': User
-            }   
+            }
     my_dict = {}
     for key, value in objects.items():
         my_dict[key] = storage.count(value)
