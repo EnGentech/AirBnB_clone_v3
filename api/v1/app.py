@@ -31,8 +31,8 @@ def storage_close(self):
     storage.close()
 
 
-@app.route('/api/v1/nop')
-def err_404():
+@app.errorhandler(404)
+def err_404(error):
     """A function to return error 404"""
     err = {'error': 'Not found'}
     return jsonify(err), 404
