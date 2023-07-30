@@ -2,7 +2,7 @@
 """
 Create flask web application
 """
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -29,6 +29,13 @@ app.register_blueprint(app_views)
 def storage_close(self):
     """a teardown context to close the session"""
     storage.close()
+
+
+@app.route('/api/v1/nop')
+def err_404():
+    """A function to return error 404"""
+    err = {'error': 'Not found'}
+    return jsonify(err)
 
 
 if __name__ == "__main__":
