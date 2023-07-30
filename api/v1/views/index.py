@@ -20,18 +20,18 @@ def status():
             }
     return jsonify(status)
 
-@app_views.route('/api/v1/stats')
-def count():
+@app_views.route('/stats')
+def list_counnt():
     """Return the number of each objects in database"""
     objects = {
             'amenities': Amenity,
             'cities': City,
             'places': Place,
             'reviews': Review,
-            'states': States,
+            'states': State,
             'users': User
             }   
     my_dict = {}
     for key, value in objects.items():
-        new_dict[key] = storage.count(value)
+        my_dict[key] = storage.count(value)
     return jsonify(my_dict)
