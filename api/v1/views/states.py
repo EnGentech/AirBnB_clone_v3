@@ -20,7 +20,7 @@ def get_states():
     elif request.method == 'POST':
         name = request.get_json()
         if name.get('name') is None:
-            return 'Missing name', 400
+            abort(400, 'Missing name')
         try:
             value = name['name']
             new_dict = {
@@ -33,7 +33,7 @@ def get_states():
             return new_dict, 201
 
         except Exception as e:
-            return jsonify("Not a JSON"), 400
+            abort(400, "Not a JSON")
 
 @app_views.route('/states/<state_id>', methods=['GET', "DELETE", "PUT"], strict_slashes=False)
 def get_delete_put(state_id):
