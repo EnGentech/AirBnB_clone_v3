@@ -103,3 +103,5 @@ class TestState(unittest.TestCase):
         state = State()
         string = "[State] ({}) {}".format(state.id, state.__dict__)
         self.assertEqual(string, str(state))
+class TestStateApi(unittest.TestCase):
+    def setuptest(self)
