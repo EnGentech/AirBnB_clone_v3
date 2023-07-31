@@ -11,6 +11,7 @@ state_list = []
 for state in states:
     state_list.append(state.to_dict())
 
+
 @app_views.route('/states', methods=["GET", "POST"], strict_slashes=False)
 def get_states():
     """A function to perform GET and POST request on http"""
@@ -35,7 +36,9 @@ def get_states():
         except Exception as e:
             abort(400, "Not a JSON")
 
-@app_views.route('/states/<state_id>', methods=['GET', "DELETE", "PUT"], strict_slashes=False)
+
+@app_views.route('/states/<state_id>',
+                 methods=['GET', "DELETE", "PUT"], strict_slashes=False)
 def get_delete_put(state_id):
     """A function to perform http GET, DELETE and PUT method"""
     check = 0
@@ -64,7 +67,8 @@ def get_delete_put(state_id):
                     data = request.get_json()
                     new_data = {}
                     for key in data:
-                        if key == 'id' or key == 'created_at' or key == 'updated_at':
+                        if key == 'id' or key == 'created_at'\
+                                or key == 'updated_at':
                             continue
                         new_data[key] = data[key]
                     i.update(new_data)
