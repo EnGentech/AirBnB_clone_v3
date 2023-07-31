@@ -3,6 +3,7 @@
 from models import storage
 from models.state import State
 from flask import jsonify, Flask
+from sys import argv
 import json
 
 
@@ -11,11 +12,13 @@ new_dict = []
 for state in states:
     new_dict.append(state.to_dict())
 
-
-a = '189b619-8a07-4f66-9da6-6acb0c8bce96'
+value = 0
+a = argv[1]
 for i in new_dict:
     if i['id'] == a:
         print(i)
+        value = 1
         break
-    else:
-        print("None")
+        
+if value == 0:
+    print("None")

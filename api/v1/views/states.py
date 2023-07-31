@@ -38,20 +38,27 @@ def get_states():
 @app_views.route('/states/<state_id>', methods=['GET', "DELETE", "PUT"], strict_slashes=False)
 def get_delete_put(state_id):
     """A function to perform http GET, DELETE and PUT method"""
-    for i in state_list:
-        if request.method == 'GET':
+    check = 0
+    if request.method == 'GET':
+        for i in state_list:
             if i['id'] == state_id:
                 return i
-            else:
-                abort(404)
+                check = 1
+                break
+        if check == 0:
+            abort(404)
 
-        elif request.method == "DELETE":
+    elif request.method == "DELETE":
+        for i in state_list:
             if i['id'] == state_id:
+                check = 1
                 return "{}", 200
-            else:
-                abort(404)
+                break
+        if check == 0:
+            abort(404)
 
-        elif request.method == "PUT":
+    elif request.method == "PUT":
+        for i in state_list:
             if i['id'] == state_id:
                 try:
                     data = request.get_json()
@@ -64,3 +71,5 @@ def get_delete_put(state_id):
                     return i, 200
                 except Exception as e:
                     abort(400, "Not a JSON")
+        if check == 0:
+            abort(404)
